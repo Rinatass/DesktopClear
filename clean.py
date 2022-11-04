@@ -17,16 +17,21 @@ for x in AllFiles:
 
             count = 1
             defdist = dist.split('.')
-            dist = defdist[0] + '(' + str(count) + ').txt' 
+            if(len(defdist) > 1):
+                dist = defdist[0] + '(' + str(count) + ')' + '.' + defdist[1]
+            else:
+                dist = defdist[0] + '(' + str(count) + ')'
             
             while(True):
                 if(os.path.exists(dist)):
                     count += 1
-                    dist = defdist[0] + '(' + str(count) + ').txt'
+                    if(len(defdist) > 1):
+                        dist = defdist[0] + '(' + str(count) + ')' + '.' + defdist[1]
+                    else:
+                        dist = defdist[0] + '(' + str(count) + ')'
                     continue
                 else:
                     os.rename(x, dist)
                     break
 
 print('Done!')
-test = input()
